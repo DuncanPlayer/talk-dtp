@@ -8,8 +8,14 @@
         <version>1.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>dtp-starter</artifactId>
+    <packaging>pom</packaging>
+
+
+    <modules>
+        <module>starter-common</module>
+        <module>starter-nacos</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
