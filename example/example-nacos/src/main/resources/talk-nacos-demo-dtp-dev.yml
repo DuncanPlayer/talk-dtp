@@ -13,7 +13,7 @@ spring:
         group: DEFAULT_GROUP
       configType: yml
       platforms:                 # 通知报警平台配置
-        - platform: sys
+        - platform: sms
           urlKey: 3a7500-1287-4bd-a798-c5c3d8b69c  # 替换
           receivers: 17323378421                   # 接受人手机号
       tomcatTp:                                    # tomcat web server线程池配置
@@ -31,7 +31,7 @@ spring:
           executorType: common                     # 线程池类型common、eager：适用于io密集型
           corePoolSize: 6
           maximumPoolSize: 8
-          queueCapacity: 200
+          queueCapacity: 10
           queueType: VariableLinkedBlockingQueue   # 任务队列，查看源码QueueTypeEnum枚举类
           rejectedHandlerType: CallerRunsPolicy    # 拒绝策略，查看RejectedTypeEnum枚举类
           keepAliveTime: 50
@@ -46,9 +46,9 @@ spring:
 
         - threadPoolName: dtpExecutor2
           executorType: eager                          # 线程池类型common、eager：适用于io密集型
-          corePoolSize: 2
-          maximumPoolSize: 4
-          queueCapacity: 200
+          corePoolSize: 1
+          maximumPoolSize: 1
+          queueCapacity: 1
           queueType: VariableLinkedBlockingQueue       # 任务队列，查看源码QueueTypeEnum枚举类
           rejectedHandlerType: CallerRunsPolicy        # 拒绝策略，查看RejectedTypeEnum枚举类
           keepAliveTime: 50

@@ -5,6 +5,7 @@ import com.dtp.common.dto.NotifyItem;
 import com.dtp.common.em.NotifyTypeEnum;
 import com.dtp.core.context.DtpContextHolder;
 import com.dtp.core.notify.Notifier;
+import com.dtp.core.notify.sms.DtpSmsNotifier;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -29,17 +30,11 @@ public class NotifierHandler {
             NOTIFIERS.put(notifier.platform(), notifier);
         }
 
-        // TODO SMS
-//        Notifier dingNotifier = new DtpDingNotifier();
-//        Notifier wechatNotifier = new DtpWechatNotifier();
-//        Notifier larkNotifier = new DtpLarkNotifier();
-//        NOTIFIERS.put(dingNotifier.platform(), dingNotifier);
-//        NOTIFIERS.put(wechatNotifier.platform(), wechatNotifier);
-//        NOTIFIERS.put(larkNotifier.platform(), larkNotifier);
+        Notifier smsNotifier = new DtpSmsNotifier();
+        NOTIFIERS.put(smsNotifier.platform(), smsNotifier);
     }
 
     public void sendNotice(DtpMainProp prop, List<String> diffs) {
-
         try {
             NotifyItem notifyItem = DtpContextHolder.get().getNotifyItem();
             for (String platform : notifyItem.getPlatforms()) {
