@@ -1,0 +1,38 @@
+package com.dtp.core.support;
+
+import com.dtp.core.thread.DtpExecutor;
+import com.dtp.core.thread.EagerDtpExecutor;
+import lombok.Getter;
+
+/**
+ * ExecutorType
+ *
+ * @author 方便面
+ * @date 2022/5/2
+ */
+@Getter
+public enum ExecutorType {
+    /**
+     * Executor type.
+     */
+    COMMON("common", DtpExecutor.class),
+    EAGER("eager", EagerDtpExecutor.class);
+
+    private final String name;
+
+    private final Class<?> clazz;
+
+    ExecutorType(String name, Class<?> clazz) {
+        this.name = name;
+        this.clazz = clazz;
+    }
+
+    public static Class<?> getClass(String name) {
+        for (ExecutorType type : ExecutorType.values()) {
+            if (type.name.equals(name)) {
+                return type.getClazz();
+            }
+        }
+        return COMMON.getClazz();
+    }
+}
